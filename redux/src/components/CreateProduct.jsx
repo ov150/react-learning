@@ -58,7 +58,16 @@ const CreateProduct = () => {
                 value={productData.price}
                 onChange={(e) => setProductData({ ...productData, price: e.target.value })}
             />
-            <select name="category" id="category" value={productData.category} onChange={(e) => setProductData({ ...productData, category: e.target.value })}>
+            <select
+                name="category"
+                id="category"
+                value={productData.category}
+                onChange={(e) => setProductData({ ...productData, category: e.target.value })}
+                required
+            >
+                <option value="" disabled>
+                    Select Category
+                </option>
                 {categories?.map((cat) => (
                     <option key={cat._id} value={cat._id}>
                         {cat.name}

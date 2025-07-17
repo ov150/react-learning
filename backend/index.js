@@ -4,6 +4,7 @@ import { configDotenv } from "dotenv";
 import userRoute from "./routes/auth.routes.js"
 import productRoute from "./routes/product.routes.js";
 import categoryRoute from "./routes/category.routes.js";
+import taskRoute from "./routes/task.routes.js";
 import connectDB from "./utils/db.js";
 import { v2 as cloudinary } from 'cloudinary';
 const app = express();
@@ -40,6 +41,8 @@ app.use("/api/user", userRoute);
 app.use("/api/product", productRoute);
 //http://localhost:3000/api/category
 app.use("/api/category", categoryRoute);
+//http://localhost:3000/api/task
+app.use("/api/task", taskRoute);
 
 app.listen(3000, () => {
   console.log("Server is running on http://localhost:3000");

@@ -1,7 +1,7 @@
 export const registerAction = (userdata) => {
     return async (dispatch) => {
         try {
-            const res = await fetch("http://localhost:3000/api/user/register", {
+            const res = await fetch(`${import.meta.env.VITE_APP_BACKEND_URL}/user/register`, {
                 method: "POST",
                 headers: {
                     'Content-Type': 'application/json',
@@ -26,7 +26,7 @@ export const registerAction = (userdata) => {
 export const LoginAction = (userdata) => {
     return async (dispatch) => {
         try {
-            const res = await fetch("http://localhost:3000/api/user/login", {
+            const res = await fetch(`${import.meta.env.VITE_APP_BACKEND_URL}/user/login`, {
                 method: "POST",
                 headers: {
                     'Content-Type': 'application/json',
@@ -50,7 +50,7 @@ export const LoginAction = (userdata) => {
 export const profileAction = (token) => {
     return async (dispatch) => {
         try {
-            const res  = await fetch('http://localhost:3000/api/user/profile', {
+            const res  = await fetch(`${import.meta.env.VITE_APP_BACKEND_URL}/user/profile`, {
                 method: "GET",
                 headers: {
                     'Authorization': `Bearer ${token}`

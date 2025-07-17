@@ -13,7 +13,21 @@ const ProductEdit = () => {
         dispatch(fetchCategory());
     }, [dispatch]);
 
-    
+    useEffect(() => {
+        const fetchProductDetails = async () => {
+            const response = await fetch(`${import.meta.env.VITE_APP_BACKEND_URL}/product/${id}`);
+            const data = await response.json();
+            setProductData({
+                name: data.name || "",
+                description: data.description || "",
+                price: data.price || "",
+                category: data.category || "",
+                image: null,
+            });
+        };
+        fetchProductDetails();
+    }, [id]);
+
     const [productData, setProductData] = useState({
         name: "",
         description: "",
@@ -58,7 +72,16 @@ const ProductEdit = () => {
                 value={productData.price}
                 onChange={(e) => setProductData({ ...productData, price: e.target.value })}
             />
-            <select name="category" id="category" value={productData.category} onChange={(e) => setProductData({ ...productData, category: e.target.value })}>
+            <select
+                name="category"
+                id="category"
+                value={productData.category}
+                onChange={(e) => setProductData({ ...productData, category: e.target.value })}
+                required
+            >
+                <option value="" disabled>
+                    Select Category
+                </option>
                 {categories?.map((cat) => (
                     <option key={cat._id} value={cat._id}>
                         {cat.name}
@@ -69,7 +92,7 @@ const ProductEdit = () => {
                 type="file"
                 onChange={(e) => setProductData({ ...productData, image: e.target.files[0] })}
             />
-            <button type="submit">Create Product</button>
+            <button type="submit">Update Product</button>
         </form>
         </div>
     )

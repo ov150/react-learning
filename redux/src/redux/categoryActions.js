@@ -1,7 +1,12 @@
 export const fetchCategory = () => {
     return async (dispatch) => {
         try {
-            const response = await fetch("http://localhost:3000/api/category");
+            const response = await fetch(`${import.meta.env.VITE_APP_BACKEND_URL}/category`, {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json"
+                }
+            });
             const data = await response.json();
             console.log(data.categories, "category data from action");
             dispatch({
@@ -18,7 +23,7 @@ export const fetchCategory = () => {
 export const addCategoryAction = (formData, token) => {
     return async (dispatch) => {
         try {
-            const response = await fetch("http://localhost:3000/api/category", {
+            const response = await fetch(`${import.meta.env.VITE_APP_BACKEND_URL}/category`, {
                 method: "POST",
                 headers: {
                     "Authorization": `Bearer ${token}`
@@ -40,7 +45,7 @@ export const addCategoryAction = (formData, token) => {
 export const updateCategoryAction = (formData, token, id) => {
     return async (dispatch) => {
         try {
-            const response = await fetch(`http://localhost:3000/api/category/${id}`, {
+            const response = await fetch(`${import.meta.env.VITE_APP_BACKEND_URL}/category/${id}`, {
                 method: "PUT",
                 headers: {
                     "Authorization": `Bearer ${token}`
@@ -62,7 +67,7 @@ export const updateCategoryAction = (formData, token, id) => {
 export const deleteCategoryAction = (id, token) => {
     return async (dispatch) => {
         try {
-            const response = await fetch(`http://localhost:3000/api/category/${id}`, {
+            const response = await fetch(`${import.meta.env.VITE_APP_BACKEND_URL}/category/${id}`, {
                 method: "DELETE",
                 headers: {
                     "Authorization": `Bearer ${token}`
